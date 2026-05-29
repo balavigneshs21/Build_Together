@@ -1,345 +1,340 @@
-# Build Together – Project Workflow
+# BuildTogether
 
-## Project Overview
-
-Build Together is a collaboration and investment platform designed to connect skilled developers with potential investors. The platform helps developers who have innovative project ideas but lack financial resources to build real-world products.
-
-Developers can create teams, publish project ideas, define technology stacks, budgets, and timelines, while investors can discover promising projects and provide funding support.
-
-The system follows a layered architecture to ensure maintainability, scalability, and clean separation of responsibilities.
+> A Java console application that connects **Developers** with **Investors** — enabling teams to post project ideas, collaborate, apply for funding, and track investments end to end.
 
 ---
 
-# Project Workflow
+## Table of Contents
 
-## 1. User Registration & Authentication
-
-### Developer Workflow
-
-1. Developer creates an account.
-2. Developer logs into the system.
-3. Developer profile is created and stored.
-4. Role-based access is assigned.
-
-### Investor Workflow
-
-1. Investor creates an account.
-2. Investor logs into the platform.
-3. Investor profile is stored.
-4. Investor dashboard becomes accessible.
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Data Models](#data-models)
+- [Getting Started](#getting-started)
+- [Application Flow](#application-flow)
+- [Developer Features](#developer-features)
+- [Investor Features](#investor-features)
+- [Notification System](#notification-system)
+- [Key Business Rules](#key-business-rules)
+- [Sample Test Flow](#sample-test-flow)
 
 ---
 
-# 2. Team Management Workflow
+## Overview
 
-1. Developer creates a new team.
-2. Team leader is assigned.
-3. Team members are added.
-4. Team details are managed.
-5. Members can be removed or updated.
+**BuildTogether** is a console-based Java application built using the **MVC (Model-View-Controller)** architectural pattern. It provides a platform where developers can form teams, post project ideas, and seek investment — while investors can browse projects, fund them, and track their portfolio.
 
-### Team Rules
-
-* Each team can contain 4–5 members.
-* One member acts as the team leader.
-* Team leader manages project submissions.
+All data is stored **in-memory** using Java `ArrayList`. No external database or internet connection is required. The project is designed as a learning exercise to demonstrate clean Java OOP, MVC pattern, and real-world feature design.
 
 ---
 
-# 3. Project Creation Workflow
+## Tech Stack
 
-1. Team leader creates a project.
-2. Project details are entered:
-
-   * Project title
-   * Description
-   * Technology stack
-   * Estimated budget
-   * Timeline
-3. Project is published to the platform.
-4. Developers can update project progress and status.
+| Technology | Details |
+|---|---|
+| Language | Java |
+| Architecture | MVC (Model — View — Controller) |
+| Storage | In-memory (Java ArrayList) |
+| Interface | Console / Terminal |
+| IDE | Eclipse |
 
 ---
-
-# 4. Investor Discovery Workflow
-
-1. Investors browse all available projects.
-2. Investors filter projects using:
-
-   * Budget
-   * Domain
-   * Technology stack
-3. Investors view:
-
-   * Team details
-   * Project details
-   * Funding requirements
-4. Investors contact the team leader.
-
----
-
-# 5. Funding Workflow
-
-1. Investor selects a project.
-2. Investor reviews project requirements.
-3. Investor initiates funding/investment.
-4. Funding details are recorded.
-5. Developers receive funding updates.
-6. Investors track investment progress.
-
----
-
-# 6. Communication Workflow
-
-1. Investors contact developers.
-2. Developers respond to investor queries.
-3. Collaboration discussions take place.
-4. Funding agreements are finalized.
-
----
-
-# System Architecture
-
-The project follows a Layered Architecture:
-
-```text
-Controller Layer
-       ↓
-Service Layer
-       ↓
-Repository Layer
-       ↓
-Database Layer
-```
-
-## Architecture Explanation
-
-### 1. Controller Layer
-
-* Handles user requests.
-* Manages navigation between views.
-* Sends data to the service layer.
-
-### 2. Service Layer
-
-* Contains business logic.
-* Validates user actions.
-* Processes project and investment operations.
-
-### 3. Repository Layer
-
-* Handles database interactions.
-* Performs CRUD operations.
-* Stores and retrieves application data.
-
-### 4. Database Layer
-
-* Stores users, projects, teams, and investment details.
-* Maintains persistent application data.
-
----
-
-# Project Modules
-
-## Authentication Module
-
-### Features
-
-* User Login
-* User Registration
-* Role-based Authentication
-
-### Files
-
-* `LoginModel.java`
-* `LoginView.java`
-* `SignUpModel.java`
-* `SignUpView.java`
-
----
-
-## Developer Module
-
-### Features
-
-* Developer profile management
-* Team creation
-* Project management
-
-### Files
-
-* `DeveloperModel.java`
-* `DeveloperView.java`
-
----
-
-## Team Management Module
-
-### Features
-
-* Create team
-* Add/remove members
-* Assign team leader
-
-### Files
-
-* `TeamManagementView.java`
-* `TeamView.java`
-
----
-
-## Project Module
-
-### Features
-
-* Create project
-* Update project details
-* Publish project
-
-### Files
-
-* `ProjectCreateView.java`
-* `ProjectView.java`
-
----
-
-## Discovery Module
-
-### Features
-
-* Search projects
-* Filter projects
-* View project details
-
-### Files
-
-* `ProjectSearchModel.java`
-* `ProjectSearchView.java`
-
----
-
-## Funding Module
-
-### Features
-
-* Apply for funding
-* Manage funding requests
-* Track funding status
-
-### Files
-
-* `FundingModel.java`
-* `FundingView.java`
-
----
-
-## Investment Module
-
-### Features
-
-* Investor project tracking
-* Investment management
-* Monitor funded projects
-
-### Files
-
-* `InvestmentModel.java`
-* `InvestmentView.java`
-
----
-
-## Contact Module
-
-### Features
-
-* Communication between developers and investors
-* Contact team leaders
-
-### Files
-
-* `ContactModel.java`
-* `ContactView.java`
-
----
-
-# Core Models
-
-## User Model
-
-Represents all platform users including developers and investors.
-
-## Team Model
-
-Stores team information and member details.
-
-## Project Model
-
-Stores project information including budget, stack, and timeline.
-
----
-
-# Technology Stack
-
-## Frontend
-
-* Java Swing / Java UI Views
-
-## Backend
-
-* Java
-* Object-Oriented Programming (OOP)
 
 ## Architecture
 
-* Layered Architecture
-* MVC-inspired structure
+This project strictly follows the **MVC pattern**:
 
-## Database
+```
+User Input
+    ↓
+  VIEW  →  reads input from terminal, displays output
+    ↓       never touches DB directly
+ MODEL  →  validates input, contains all business logic
+    ↓       calls back the View with result
+   DB   →  BuildTogetherDB singleton — stores and retrieves all data
+```
 
-* Database integration can be connected using MySQL or JDBC.
+### Key Design Principles
+
+- **View** handles only input (`Scanner`) and output (`System.out`)
+- **Model** handles only validation and business logic
+- **DB** is accessed from Model only — never from View
+- **Callback pattern** — Model calls back View methods like `onSuccess()` or `onFailed()`
+- **User object** is passed from `LoginView` → `HomeView` → every feature View
+- **Singleton DB** — one shared `BuildTogetherDB` instance across the entire app
 
 ---
 
-# Main Features Summary
+## Project Structure
+
+```
+src/com/buildtogether/
+│
+├── BuildTogetherApplication.java        ← Entry point — main() starts here
+│
+├── dto/                                 ← Data classes (one per table)
+│   ├── User.java                        ← Shared user — Developer or Investor
+│   ├── LoginRequest.java                ← Holds email + password for login
+│   ├── Developer.java                   ← Developer profile (bio, skills, experience)
+│   ├── Investor.java                    ← Investor profile (company, available funds)
+│   ├── Team.java                        ← Team created by a developer
+│   ├── TeamMember.java                  ← Links developer to team (PENDING/ACCEPTED/REJECTED)
+│   ├── Project.java                     ← Project idea posted by a team
+│   ├── TechStack.java                   ← Technology used in a project
+│   ├── FundingApplication.java          ← Developer's funding request to investor
+│   ├── Investment.java                  ← Confirmed investment record (with payment status)
+│   ├── ContactRequest.java              ← Investor's contact request to team leader
+│   └── Notification.java               ← In-app notification (unread/read)
+│
+├── repository/
+│   └── BuildTogetherDB.java             ← Singleton in-memory database
+│
+├── util/
+│   └── ConsoleInput.java                ← Shared Scanner singleton
+│
+└── features/
+    ├── signup/       → SignUpView, SignUpModel
+    ├── signin/       → LoginView, LoginModel
+    ├── home/         → HomeView, HomeModel
+    ├── developer/    → DeveloperView, DeveloperModel
+    ├── team/         → TeamView, TeamModel
+    ├── project/      → ProjectView, ProjectModel
+    ├── discovery/    → ProjectSearchView, ProjectSearchModel
+    ├── funding/      → FundingView, FundingModel
+    ├── investors/    → InvestorView, InvestorModel
+    ├── contact/      → ContactView, ContactModel
+    └── notifications/→ NotificationsView, NotificationsModel
+```
+
+---
+
+## Data Models
+
+| DTO | Key Fields | Enums |
+|---|---|---|
+| `User` | id, name, email, password, role, status, createdAt | `Role`: DEVELOPER, INVESTOR |
+| `Developer` | id, userId, bio, skills, experienceLevel | — |
+| `Investor` | id, userId, companyName, availableFunds | — |
+| `Team` | id, teamName, teamLeaderId, createdAt | — |
+| `TeamMember` | id, teamId, developerId, status | `MemberStatus`: PENDING, ACCEPTED, REJECTED |
+| `Project` | id, title, description, teamId, domain, estimatedCost, timelineDays, status | `ProjectStatus`: IDEA, IN_PROGRESS, COMPLETED |
+| `TechStack` | id, projectId, technology | — |
+| `FundingApplication` | id, projectId, investorId, requestedAmount, status, appliedAt | `ApplicationStatus`: PENDING, APPROVED, REJECTED |
+| `Investment` | id, investorId, projectId, amount, investedAt, paymentStatus | `PaymentStatus`: PENDING, PAID |
+| `ContactRequest` | id, investorId, teamLeaderId, message, status, sentAt | `ContactStatus`: PENDING, ACCEPTED, DECLINED |
+| `Notification` | id, userId, message, isRead, createdAt | — |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Java 8 or above
+- Eclipse IDE (or any Java IDE)
+
+### Run the Project
+
+1. Clone or download the repository
+2. Open in **Eclipse IDE**
+3. Navigate to `BuildTogetherApplication.java`
+4. Right-click → **Run As** → **Java Application**
+5. The console shows the landing menu
+
+```
+Welcome to BuildTogether
+Connecting Developers with Investors
+
+1. Sign Up
+2. Login
+3. Exit
+Choose an option:
+```
+
+---
+
+## Application Flow
+
+```
+main() — BuildTogetherApplication
+        ↓
+Landing Menu → Sign Up / Login / Exit
+        ↓
+Login successful → User object created
+        ↓
+HomeModel checks user.getRole()
+        ↓
+    DEVELOPER                      INVESTOR
+       ↓                              ↓
+Developer Menu (15 options)    Investor Menu (10 options)
+       ↓                              ↓
+  Feature Views                 Feature Views
+       ↓                              ↓
+  Back to menu                  Back to menu
+       ↓
+Sign Out → Landing Menu again
+```
+
+---
 
 ## Developer Features
 
-* Account creation
-* Team creation
-* Team management
-* Project publishing
-* Funding applications
-* Project progress tracking
+### Option 1 — My Profile
+Set bio, skills, and experience level (Beginner / Mid / Senior). Prompts creation on first visit. Shows existing profile on subsequent visits.
+
+### Option 2 — Create Team
+Create a team and become the team leader automatically. Maximum 5 accepted members per team.
+
+### Option 3 — Manage Team Members
+- **Invite a developer** — sends an invitation request. Developer gets notified and must accept or decline
+- **Remove a member** — remove an existing accepted member
+- **View current members** — shows all accepted members with names, skills, experience, and role
+
+### Option 4 — Post Project Idea
+First selects which team the project belongs to (from all teams the developer is part of), then fills title, description, domain, estimated cost, and timeline. Project starts with status `IDEA`.
+
+### Option 5 — Add Tech Stack
+Add technologies to any project across all teams the developer belongs to.
+
+### Option 6 — Update Project Status
+Change project status: `IDEA` → `IN_PROGRESS` → `COMPLETED`.
+On `COMPLETED`, all investors who invested are automatically notified.
+
+### Option 7 — View My Projects
+View all projects from all joined teams with full details — title, description, domain, budget, timeline, status, and tech stack.
+
+### Option 8 — Search Investors
+Browse all registered investors with company name and available funds.
+
+### Option 9 — Apply for Funding
+Select a project and investor, then enter the requested amount. Validates amount does not exceed investor's available funds. Prevents duplicate pending applications.
+
+### Option 10 — My Funding Applications
+View all funding applications across all projects with status (PENDING / APPROVED / REJECTED).
+
+### Option 11 — Messages from Investors
+View all contact requests received from investors with company name and message content.
+
+### Option 12 — My Invitations *(pending badge)*
+View all pending team invitations. Accept or decline each one. Team leader is notified of the decision.
+
+### Option 13 — My Teams
+View all teams the developer has joined (own team + accepted invitations). Each entry shows team name, leader name, and related projects with status. Option to **leave a team** — team leaders cannot leave their own team.
+
+### Option 14 — Notifications *(unread badge)*
+View all notifications. All marked as read after viewing.
+
+### Option 15 — Sign Out
+
+---
 
 ## Investor Features
 
-* Account creation
-* Project discovery
-* Project filtering
-* Team analysis
-* Funding investments
-* Investment tracking
+### Option 1 — My Profile
+Set company name and available funds.
 
-## Common Features
+### Option 2 — View All Projects
+Browse all posted projects — title, domain, budget, timeline, status.
 
-* Login authentication
-* Role-based access
-* Secure communication
+### Option 3 — Filter Projects
+Filter by domain, maximum budget, or technology used.
+
+### Option 4 — View Team Details
+Shows all projects first. Select a project ID to view its full team — member names, skills, experience, roles, and tech stack.
+
+### Option 5 — Contact Team Leader
+Send a message to a team leader. Developer is immediately notified. View all sent requests and their status.
+
+### Option 6 — View Funding Applications
+View all funding applications received. For each application shows requested amount and whether investor can afford it.
+- **Approve** — `investor.funds >= requestedAmount`. Funds deducted, project → `IN_PROGRESS`, developer notified
+- **Reject** — application marked `REJECTED`, developer notified to try another investor
+
+### Option 7 — Invest in Project
+Browse all projects and invest directly. Two strict validations:
+- `enteredAmount >= project.estimatedCost` (must meet full budget)
+- `enteredAmount <= investor.availableFunds` (must have the funds)
+
+On success: funds deducted, project → `IN_PROGRESS`, developer notified.
+
+### Option 8 — Track My Investments
+View all investments with project name, amount, project status, and payment status.
+Once project is `COMPLETED`, investor can **mark payment as done** — developer is notified.
+
+### Option 9 — Notifications *(unread badge)*
+View all notifications. All marked as read after viewing.
+
+### Option 10 — Sign Out
 
 ---
 
-# Future Enhancements
+## Notification System
 
-* Real-time chat system
-* AI-based project recommendation
-* Investor analytics dashboard
-* Secure payment integration
-* Notification system
-* Project milestone tracking
-* Cloud deployment
+A real-time in-app notification system that shows badge counts in the menu.
+
+| Trigger | Recipient | Message Tag |
+|---|---|---|
+| Team invite sent | Invited developer | `[TEAM INVITE]` |
+| Invite accepted | Team leader | `[INVITE ACCEPTED]` |
+| Invite declined | Team leader | `[INVITE DECLINED]` |
+| Member left team | Team leader | `[MEMBER LEFT]` |
+| Funding approved | Developer | `[FUNDING APPROVED]` |
+| Funding rejected | Developer | `[FUNDING REJECTED]` |
+| Investor invested directly | Developer | `[INVESTOR INTEREST]` |
+| Project marked COMPLETED | All investors | `[PROJECT COMPLETED]` |
+| Payment marked done | Developer | `[PAYMENT RECEIVED]` |
+| Contact request received | Developer | `[NEW MESSAGE]` |
 
 ---
 
-# Conclusion
+## Key Business Rules
 
-Build Together is a collaborative innovation platform that bridges the gap between talented developers and investors. The project encourages teamwork, startup culture, and product innovation by helping developers transform ideas into successful products through investor support.
+| Rule | Details |
+|---|---|
+| Max team size | 5 accepted members per team |
+| Team invite flow | Invitation sent → developer accepts or declines — no direct add |
+| Team leader restriction | Cannot leave their own team |
+| Multi-team membership | A developer can be part of many teams simultaneously |
+| Project-team assignment | Developer selects which team the project belongs to when posting |
+| Cross-team operations | Tech stack, status update, and funding apply across ALL developer's teams |
+| Funding approval check | `investor.availableFunds >= application.requestedAmount` |
+| Direct invest check | `enteredAmount >= project.estimatedCost` AND `enteredAmount <= investor.availableFunds` |
+| Duplicate application | Cannot apply to the same investor for the same project twice (PENDING check) |
+| Payment restriction | Investor can only mark payment done after project status is `COMPLETED` |
+| Notification badges | Separate badge — invitations show `(N pending)`, notifications show `(N new)` |
+
+---
+
+## Sample Test Flow
+
+```
+1.  Sign up as Developer A  → login → complete profile → create team
+2.  Sign up as Developer B  → login → complete profile → sign out
+3.  Login as Developer A    → invite Developer B (option 3) → sign out
+4.  Login as Developer B    → accept invitation (option 12) → sign out
+5.  Login as Developer A    → post project — select team (option 4)
+                            → add tech stack (option 5)
+6.  Sign up as Investor     → login → complete profile (set company + funds)
+7.  Login as Developer A    → apply for funding (option 9) → sign out
+8.  Login as Investor       → view funding applications (option 6) → approve
+9.  Login as Developer A    → check notifications (option 14)
+                            → update project status → COMPLETED (option 6)
+10. Login as Investor       → check notifications (option 9)
+                            → track investments (option 8) → mark payment done
+11. Login as Developer A    → check notifications → see [PAYMENT RECEIVED]
+```
+
+---
+
+## Developer
+
+Built by **Balavignesh S** — learning Java application development through hands-on project building.
+
+Developed step by step following the **ThiranX** project MVC pattern as reference.
+
+---
+
+## License
+
+This project is for educational purposes only.
